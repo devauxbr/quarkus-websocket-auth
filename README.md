@@ -17,5 +17,5 @@ clicking on each related button.
 
 The WebSocket will have a **null** `Principal`, while the REST endpoint will have the correct one populated.
 
-You can then switch to the `quarkus-1.2` git branch (`git checkout quarkus-1.2`) that relies on 
+You can then switch to the `quarkus-1.12` git branch (`git checkout quarkus-1.12`) that relies on 
 Quarkus **1.12.2-Final**, stop and relaunch the app. The WebSocket will have the `Principal` correctly populated !

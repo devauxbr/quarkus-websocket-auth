@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket-auth - 1.0.0-SNAPSHOT</title>
+    <style>
+        button {
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            margin: 1rem;
+            column-gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <button onclick="wsAuth()">Authenticate with WebSocket</button>
+    <div id="ws-result"></div>
+</div>
+<div class="container">
+    <button onclick="restAuth()">Authenticate with REST</button>
+    <div id="rest-result"></div>
+</div>
+</body>
+<script>
+    const username = new URLSearchParams(window.location.search).get('username');
+
+    function wsAuth() {
+        const socket = new WebSocket("ws://localhost:8080/ws?username=" + username);
+        socket.onmessage = ({data}) => document.getElementById("ws-result").innerText = "Username is " + data;
+    }
+
+    function restAuth() {
+        fetch("/rest?username=" + username)
+            .then(response => response.text())
+            .then(result => document.getElementById("rest-result").innerText = "Username is " + result)
+    }
+</script>
+</html>
